@@ -1,0 +1,53 @@
+{% extends 'food/base.html' %}
+{% load static %}
+
+{% block title %}Dessert{% endblock %}
+
+{% block content %}
+
+    <h2 class="creative-heading">Desserts</h2>
+    <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="row">
+                {% for dessert in desserts %}
+                  <div class="col-md-6">
+                    <div class="card mb-4 box-shadow">
+                      <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" src="{{ dessert.pImage }}" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
+                      <div class="card-body">
+                        <h3 class="pt-3" id="des{{ dessert.id }}">{{ dessert.name }}</h3>
+                        <p class="card-text">{{ dessert.description }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="form-check-inline">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="radio" name="dessert{{ dessert.id }}"  value="{{ dessert.dPrice }}" checked>
+                              ₹{{ dessert.dPrice }}
+                            </label>
+                          </div>
+                          <div>
+                            <button type="button" class="btn btn-outline-success" onclick="addDesserts('{{ dessert.id }}')">Add to cart</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="col-md-4 orders">
+              <div class="bg-dark p-4 rounded text-light">
+                <h2 class="text-center">Order List</h2>
+                <ul id="dcart"></ul>
+                <h4 id="dtotal">Total: 0₹</h4>
+                <div class="text-center">
+                    <a class="btn btn-success" href="{% url 'FoodApp:order' %}" style="text-decoration: none; color: white">Next</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="{% static '/js/dessert.js' %}"></script>
+{% endblock %}
+

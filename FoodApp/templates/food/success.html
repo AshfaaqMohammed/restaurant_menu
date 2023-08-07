@@ -1,0 +1,21 @@
+{% extends 'food/base.html' %}
+
+{% load static %}
+
+{% block title %}Success{% endblock %}
+
+{% block content %}
+    <div class="bg-dark p-4 rounded text-light mt-4">
+        <h2 class="text-center">We have recived you order</h2>
+        <h4 class="text-center">Number of orders: {{ orderNum }}</h4>
+        <h3 class="text-center">Your Bill:</h3>
+        {% for item in items %}
+            <h4 class="text-center">{{ item.name }} {{ item.size }} - ₹ {{ item.price }}</h4>
+        {% endfor %}
+        <h4 class="text-center">Total: ₹ {{ total }}</h4>
+        <h4 class="text-center">If you want to modify your order, please call us:</h4>
+        <h4 class="text-center">Phone Number: 040-23761872</h4>
+    </div>
+
+
+{% endblock %}

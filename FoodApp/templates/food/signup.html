@@ -1,0 +1,48 @@
+{% extends 'food/base.html' %}
+
+{% load static %}
+
+{% block title %}SignUp{% endblock %}
+
+{% block content %}
+
+    <div class="login-page">
+        <div class="container-fluid p-5 mt-5">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 bg-dark text-light rounded">
+              <h3 class="text-center mt-3">SignUp</h3>
+              <form method="post" class="mt-3 mb-5">
+                  {% csrf_token %} <!-- for security purpose -->
+                  {% for field in form %}
+                      <div class="form-group form-label">
+                        <div>
+                          {{ field.label_tag }}
+                        </div>
+                        <div class="mt-2">
+                          {{ field }}
+                        </div>
+                        {% if field.help_text %}
+                          <small style="color: gray">{{ field.help_text }}</small>
+                        {% endif %}
+                      </div>
+                  {% endfor %}
+                  <div class="form-error">
+                      {% for error in form.errors %}
+                        <small style="color: red">{{ error }}</small>
+                      {% endfor %}
+                  </div>
+                  <div class="text-center">
+                      <button class="btn btn-success" type="submit">SignUp</button>
+                  </div>
+
+              </form>
+            </div>
+            <div class="col-md-3"></div>
+          </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
